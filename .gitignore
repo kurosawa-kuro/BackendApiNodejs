@@ -6,3 +6,4 @@ log\system\system.log
 log/access/access.log
 log/access/access.log
 log/system/system.log
+log/application/debug.log
