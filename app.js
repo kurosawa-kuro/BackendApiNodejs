@@ -49,7 +49,8 @@ app.use("/", (() => {
   const router = express.Router();
   router.use("/", require("./routes/index"));
   router.use("/users", require("./routes/users"));
-  
+  router.use("/async", require("./routes/async"));
+
   return router;
 })());
 
