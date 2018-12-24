@@ -5,9 +5,8 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const helmet = require('helmet')
 
-// Security
+// Config
 const { SESSION_SECRET } = require("./config/app.config.js").security;
-app.use(helmet())
 
 // Log
 const accesslogger = require("./lib/log/accesslogger.js");
@@ -19,17 +18,25 @@ const serverError = require("./lib/errorHandling/serverError");
 
 const app = express();
 
+// Security
 app.disable("x-powered-by");
+app.use(helmet())
 
+// Access Log
 app.use(accesslogger());
 
+// Cookie Parser
 app.use(cookieParser());
+
+// Session
 app.use(session({
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   name: "sid"
 }));
+
+// Body Parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -41,8 +48,10 @@ app.use("/", (() => {
   return router;
 })());
 
+// System Log
 app.use(systemlogger());
 
+// Error Handling
 app.use(clientError());
 app.use(serverError());
 
