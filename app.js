@@ -10,8 +10,8 @@ var cors = require('cors')
 const { SESSION_SECRET } = require("./config/app.config.js").security;
 
 // Log
-const accesslogger = require("./lib/log/accesslogger.js");
-const systemlogger = require("./lib/log/systemlogger.js");
+const accessLogger = require("./lib/log/accessLogger.js");
+const systemLogger = require("./lib/log/systemLogger.js");
 
 // Error Handling
 const clientError = require("./lib/errorHandling/clientError");
@@ -27,7 +27,7 @@ app.use(helmet())
 app.use(cors())
 
 // Access Log
-app.use(accesslogger());
+app.use(accessLogger());
 
 // Cookie Parser
 app.use(cookieParser());
@@ -55,7 +55,7 @@ app.use("/", (() => {
 })());
 
 // System Log
-app.use(systemlogger());
+app.use(systemLogger());
 
 // Error Handling
 app.use(clientError());
