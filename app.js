@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const helmet = require('helmet')
+var cors = require('cors')
 
 // Config
 const { SESSION_SECRET } = require("./config/app.config.js").security;
@@ -21,6 +22,9 @@ const app = express();
 // Security
 app.disable("x-powered-by");
 app.use(helmet())
+
+// Cross-Origin Resource Sharing
+app.use(cors())
 
 // Access Log
 app.use(accesslogger());
