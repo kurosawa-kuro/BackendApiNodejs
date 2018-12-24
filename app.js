@@ -3,9 +3,11 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const helmet = require('helmet')
 
 // Security
 const { SESSION_SECRET } = require("./config/app.config.js").security;
+app.use(helmet())
 
 // Log
 const accesslogger = require("./lib/log/accesslogger.js");
