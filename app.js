@@ -1,30 +1,30 @@
 // NPM
-const express = require("express");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const helmet = require('helmet')
-var cors = require('cors')
+const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const helmet = require('helmet');
+const cors = require('cors');
 
 // Config
-const { SESSION_SECRET } = require("./config/app.config.js").security;
+const { SESSION_SECRET } = require('./config/app.config.js').security;
 
 // Log
-const accessLogger = require("./lib/log/accessLogger.js");
-const systemLogger = require("./lib/log/systemLogger.js");
+const accessLogger = require('./lib/log/accessLogger.js');
+const systemLogger = require('./lib/log/systemLogger.js');
 
 // Error Handling
-const clientError = require("./lib/errorHandling/clientError");
-const serverError = require("./lib/errorHandling/serverError");
+const clientError = require('./lib/errorHandling/clientError');
+const serverError = require('./lib/errorHandling/serverError');
 
 const app = express();
 
 // Security
-app.disable("x-powered-by");
-app.use(helmet())
+app.disable('x-powered-by');
+app.use(helmet());
 
 // Cross-Origin Resource Sharing
-app.use(cors())
+app.use(cors());
 
 // Access Log
 app.use(accessLogger());
@@ -37,7 +37,7 @@ app.use(session({
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  name: "sid"
+  name: 'sid'
 }));
 
 // Body Parser
@@ -45,11 +45,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Routing
-app.use("/", (() => {
+app.use('/', (() => {
   const router = express.Router();
-  router.use("/", require("./routes/index"));
-  router.use("/users", require("./routes/users"));
-  router.use("/async", require("./routes/async"));
+  router.use('/', require('./routes/index'));
+  router.use('/users', require('./routes/users'));
+  router.use('/async', require('./routes/async'));
 
   return router;
 })());

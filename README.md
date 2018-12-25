@@ -15,6 +15,6 @@ NODE_ENV=development nodemon app.js
 
 アプリケーション ログ
 ```
- const logger = require("../lib/log/logger").application
- logger.error("debug", 変数)
+ const logger = require('../lib/log/logger').application
+ logger.error('debug', 変数)
 ```
