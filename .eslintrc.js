@@ -6,6 +6,10 @@ module.exports = {
     "jquery": true
   },
   "extends": "eslint:recommended",
+  "parserOptions": { // 既に入ってたのだった。eslint --init で作られたヤツに。
+    "sourceType": "module",
+    "ecmaVersion": 2017
+  },
   "rules": {
     "indent": [
       "error",

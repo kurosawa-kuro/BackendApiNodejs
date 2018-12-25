@@ -1,6 +1,6 @@
 const router = require('express-promise-router')();
 const commonModule = require('../lib/commonModule');
-const logger = require('../lib/log/logger').application
+const logger = require('../lib/log/logger').application;
 
 
 router.get('/', async function (req, res) {
