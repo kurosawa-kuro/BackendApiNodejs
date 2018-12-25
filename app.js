@@ -14,8 +14,8 @@ const accessLogger = require('./lib/log/accessLogger.js');
 const systemLogger = require('./lib/log/systemLogger.js');
 
 // Error Handling
-const clientError = require('./lib/errorHandling/clientError');
-const serverError = require('./lib/errorHandling/serverError');
+const clientError = require('./lib/middleware/errorHandling/clientError');
+const serverError = require('./lib/middleware/errorHandling/serverError');
 
 const app = express();
 
