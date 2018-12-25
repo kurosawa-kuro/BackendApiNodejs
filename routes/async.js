@@ -9,9 +9,9 @@ router.get('/', async function (req, res) {
   console.log('Oh time flies so fast...');
   await commonModule.sleep(10000);
   console.log('10 seconds passed.');
-  logger.error('debug', param)
+  logger.error('debug', param);
 
-  res.header('Content-Type', 'application/json; charset=utf-8')  // 「レスポンスはJSON形式で返すよ」の意味
+  res.header('Content-Type', 'application/json; charset=utf-8'); // 「レスポンスはJSON形式で返すよ」の意味
   res.send(param);
 });
 
