@@ -4,3 +4,4 @@
 [2018-12-24T17:42:24.653] [ERROR] application - { result: 'users' }
 [2018-12-24T17:45:28.545] [ERROR] application - { result: 'users' }
 [2018-12-24T18:04:59.715] [ERROR] application - { result: 'async' }
+[2018-12-31T21:19:04.839] [ERROR] application - { result: 'async' }

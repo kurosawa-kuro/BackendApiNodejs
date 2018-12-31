@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const listEndpoints = require('express-list-endpoints')
 const helmet = require('helmet')
 var cors = require('cors')
 
@@ -26,9 +27,6 @@ app.use(helmet())
 // Cross-Origin Resource Sharing
 app.use(cors())
 
-// Access Log
-app.use(accessLogger());
-
 // Cookie Parser
 app.use(cookieParser());
 
@@ -44,6 +42,17 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Access Log
+app.use(accessLogger());
+
+// Request Body
+app.all('/*', function (req, res, next) {
+  console.log('【Request Body】');
+  console.log(req.body);
+  console.log('【Request Body】');
+  next(); 
+});
+
 // Routing
 app.use("/", (() => {
   const router = express.Router();
@@ -54,6 +63,7 @@ app.use("/", (() => {
   return router;
 })());
 
+
 // System Log
 app.use(systemLogger());
 
@@ -61,4 +71,9 @@ app.use(systemLogger());
 app.use(clientError());
 app.use(serverError());
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log('Listen started at port 3000.');
+  // console.log(listEndpoints(app));
+});
+
+// export default app;

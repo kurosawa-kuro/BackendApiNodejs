@@ -1,10 +1,17 @@
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-  const param = {"result":"users"};      // レスポンスで返す値。JSON形式。
-  res.header('Content-Type', 'application/json; charset=utf-8')  // 「レスポンスはJSON形式で返すよ」の意味
+  const param = {"result":"users"};
+  res.header('Content-Type', 'application/json; charset=utf-8');
 
-  res.send(param);       
+  return res.send(param);       
+});
+
+router.post("/", (req, res) => {
+  const param = {"result":"users"};
+  res.header('Content-Type', 'application/json; charset=utf-8');
+
+  return res.send(param);       
 });
 
 module.exports = router;
