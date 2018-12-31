@@ -71,13 +71,7 @@ app.use(systemLogger());
 app.use(clientError());
 app.use(serverError());
 
-<<<<<<< HEAD
 app.listen(3000, () => {
   console.log('Listen started at port 3000.');
   // console.log(listEndpoints(app));
 });
-
-// export default app;
-=======
-app.listen(3000);
->>>>>>> a673392fdbe69ec7d6488d946bec301c769c9b27
