@@ -1,24 +1,15 @@
 // NPM
 const express = require("express");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
+const listEndpoints = require('express-list-endpoints')
+
 const cluster = require('cluster');  
 const numCPUs = require('os').cpus().length;
-const listEndpoints = require('express-list-endpoints')
-const helmet = require('helmet')
-const cors = require('cors')
-
-// Config
-const { SESSION_SECRET } = require('./config/app.config.js').security;
 
 // Log
 const accessLogger = require('./lib/log/accessLogger.js');
 const systemLogger = require('./lib/log/systemLogger.js');
 
-// Error Handling
-const clientError = require('./lib/middleware/errorHandling/clientError');
-const serverError = require('./lib/middleware/errorHandling/serverError');
+
 
 if (cluster.isMaster) {
   console.log('numCPUs : ' + numCPUs);
@@ -29,28 +20,8 @@ if (cluster.isMaster) {
 } else {
   const app = express();
 
-  // Security
-  app.disable('x-powered-by');
-  app.use(helmet());
-  
-  // Cross-Origin Resource Sharing
-  app.use(cors());
-  
-  // Cookie Parser
-  app.use(cookieParser());
-  
-  // Session
-  app.use(session({
-    secret: SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    name: 'sid'
-  }));
-  
-  // Body Parser
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
-  
+  require('./config/middleware')(app);
+
   // Access Log
   app.use(accessLogger());
   
@@ -72,14 +43,12 @@ if (cluster.isMaster) {
     return router;
   })());
   
-  
   // System Log
   app.use(systemLogger());
   
   // Error Handling
-  app.use(clientError());
-  app.use(serverError());
-  
+  require('./config/errorHandling')(app);
+
   app.listen(3000, () => {
     console.log('Listen started at port 3000.');
     // console.log(listEndpoints(app));
