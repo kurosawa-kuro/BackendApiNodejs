@@ -1,5 +1,4 @@
 // NPM
-<<<<<<< HEAD
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -7,14 +6,6 @@ const session = require("express-session");
 const listEndpoints = require('express-list-endpoints')
 const helmet = require('helmet')
 var cors = require('cors')
-=======
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const helmet = require('helmet');
-const cors = require('cors');
->>>>>>> a673392fdbe69ec7d6488d946bec301c769c9b27
 
 // Config
 const { SESSION_SECRET } = require('./config/app.config.js').security;
