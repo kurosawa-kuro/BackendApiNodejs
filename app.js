@@ -11,34 +11,29 @@ const requestBody = require('./lib/middleware/requestBody');
 const accessLogger = require('./lib/log/accessLogger.js');
 const systemLogger = require('./lib/log/systemLogger.js');
 
-if (cluster.isMaster && process.env.NODE_ENV !== "development"){
-  console.log('numCPUs : ' + numCPUs);
-  for (var i = 0; i < numCPUs; i++) {
-      cluster.fork();
-  }
-} else {
-  const app = express();
+const app = express();
 
-  require('./config/middleware')(app);
+require('./config/middleware')(app);
 
-  // Access Log
-  app.use(accessLogger());
+// Access Log
+app.use(accessLogger());
 
-  // Routing
-  app.use(requestBody());
-  require('./config/routes.js')(app);
+// Routing
+app.use(requestBody());
+require('./config/routes.js')(app);
 
-  // System Log
-  app.use(systemLogger());
-  
-  // Error Handling
-  require('./config/errorHandling')(app);
+// System Log
+app.use(systemLogger());
 
-  app.listen(3000, () => {
-    if(cluster.worker)
-        console.log("Worker %d running! App listening on port %s", cluster.worker.id, 3000);
-    else
-        console.log("App listening on port %s", 3000);
-    console.log(listEndpoints(app));
-  });
-}
+// Error Handling
+require('./config/errorHandling')(app);
+
+app.listen(3000, () => {
+if(cluster.worker)
+    console.log("Worker %d running! App listening on port %s", cluster.worker.id, 3000);
+else
+    console.log("App listening on port %s", 3000);
+console.log(listEndpoints(app));
+});
+
+module.exports = app
