@@ -13,10 +13,7 @@ const systemLogger = require('./lib/log/systemLogger.js');
 
 if (cluster.isMaster && process.env.NODE_ENV !== "development"){
   console.log('numCPUs : ' + numCPUs);
-  // Debug時は一つにする
-  // numCPUs = 1;
   for (var i = 0; i < numCPUs; i++) {
-      // Create a worker
       cluster.fork();
   }
 } else {
@@ -44,6 +41,4 @@ if (cluster.isMaster && process.env.NODE_ENV !== "development"){
         console.log("App listening on port %s", 3000);
     console.log(listEndpoints(app));
   });
-  
 }
-
