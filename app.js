@@ -14,7 +14,7 @@ const systemLogger = require('./lib/log/systemLogger.js');
 if (cluster.isMaster && process.env.NODE_ENV !== "development"){
   console.log('numCPUs : ' + numCPUs);
   // Debug時は一つにする
-  numCPUs = 1;
+  // numCPUs = 1;
   for (var i = 0; i < numCPUs; i++) {
       // Create a worker
       cluster.fork();
@@ -30,7 +30,7 @@ if (cluster.isMaster && process.env.NODE_ENV !== "development"){
   // Routing
   app.use(requestBody());
   require('./config/routes.js')(app);
-  
+
   // System Log
   app.use(systemLogger());
   
