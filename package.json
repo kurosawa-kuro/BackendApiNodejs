@@ -6,14 +6,18 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon app.js",
     "start-prod": "NODE_ENV=production node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test-watch": "nodemon --exec \"npm test\""
   },
   "author": "Toshifumi Kurosawa",
   "license": "MIT",
   "devDependencies": {
     "del": "^3.0.0",
     "eslint": "^4.19.1",
-    "require-dir": "^1.0.0"
+    "jest": "^23.6.0",
+    "require-dir": "^1.0.0",
+    "superagent": "^4.1.0",
+    "supertest": "^3.3.0"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
