@@ -29,11 +29,8 @@ app.use(systemLogger());
 require('./config/errorHandling')(app);
 
 app.listen(3000, () => {
-if(cluster.worker)
-    console.log("Worker %d running! App listening on port %s", cluster.worker.id, 3000);
-else
     console.log("App listening on port %s", 3000);
-console.log(listEndpoints(app));
+    console.log(listEndpoints(app));
 });
 
 module.exports = app
