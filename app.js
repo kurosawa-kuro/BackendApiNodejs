@@ -32,7 +32,10 @@ require("./config/errorHandling")(app);
 commonModule.displayListEndpoints(app);
 
 if (process.env.NODE_ENV !== "test") {
-  app.listen(PORT, async () => {
+  app.listen(PORT, "localhost", async err => {
+    if (err) {
+      console.log("errr starting server", err);
+    }
     console.log("App listening on port %s", PORT);
     await commonModule.displayConstants();
   });
