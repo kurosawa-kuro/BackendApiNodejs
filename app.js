@@ -1,10 +1,10 @@
 // NPM
-const express = require("express");
-const listEndpoints = require('express-list-endpoints')
+const express = require('express');
 
-const cluster = require('cluster');  
-var numCPUs = require('os').cpus().length;
+// const cluster = require('cluster');
+// var numCPUs = require('os').cpus().length;
 
+const commonModule = require('./lib/commonModule');
 const requestBody = require('./lib/middleware/requestBody');
 
 // Log
@@ -28,9 +28,14 @@ app.use(systemLogger());
 // Error Handling
 require('./config/errorHandling')(app);
 
-app.listen(3000, () => {
-    console.log("App listening on port %s", 3000);
-    console.log(listEndpoints(app));
-});
+// express-list-endpoints
+commonModule.displayListEndpoints(app);
 
-module.exports = app
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(3000, async () => {
+    console.log('App listening on port %s', 3000);
+    // await commonModule.logSettings();
+  });
+}
+
+module.exports = app;
