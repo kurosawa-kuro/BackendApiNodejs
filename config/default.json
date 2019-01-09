@@ -1,14 +1,14 @@
 {
-  "Customer": {
-    "dbConfig": {
-      "host": "localhost",
-      "port": 5984,
-      "dbName": "customers"
-    },
-    "credit": {
-      "initialLimit": 100,
-      "initialDays": 1
-    }
+  "PORT": 3000,
+  "DB_MYSQL": {
+    "HOST": "localhost",
+    "PORT": 5984,
+    "DB_NAME": "customers"
+  },
+  "DB_MONGO": {
+    "HOST": "localhost",
+    "PORT": 5984,
+    "DB_NAME": "customers"
   },
   "security": {
     "SESSION_SECRET": "YOUR-SESSION-SECRET-STRING",

@@ -1,13 +1,13 @@
 module.exports = function(app) {
-  const bodyParser = require('body-parser');
-  const cookieParser = require('cookie-parser');
-  const session = require('express-session');
-  const helmet = require('helmet');
-  const cors = require('cors');
-  const { SESSION_SECRET } = require('./constants').security;
+  const bodyParser = require("body-parser");
+  const cookieParser = require("cookie-parser");
+  const session = require("express-session");
+  const helmet = require("helmet");
+  const cors = require("cors");
+  const { SESSION_SECRET } = require("./constants").SECURITY;
 
   // Security
-  app.disable('x-powered-by');
+  app.disable("x-powered-by");
   app.use(helmet());
 
   // Cross-Origin Resource Sharing
@@ -22,7 +22,7 @@ module.exports = function(app) {
       secret: SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
-      name: 'sid'
+      name: "sid"
     })
   );
 
