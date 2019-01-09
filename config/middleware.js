@@ -1,13 +1,13 @@
-module.exports = function (app) {
-  const bodyParser = require('body-parser');
-  const cookieParser = require('cookie-parser');
-  const session = require('express-session');
-  const helmet = require('helmet');
-  const cors = require('cors');
-  const { SESSION_SECRET } = require('./app.config').security;
+module.exports = function(app) {
+  const bodyParser = require("body-parser");
+  const cookieParser = require("cookie-parser");
+  const session = require("express-session");
+  const helmet = require("helmet");
+  const cors = require("cors");
+  const { SESSION_SECRET } = require("./constants").security;
 
   // Security
-  app.disable('x-powered-by');
+  app.disable("x-powered-by");
   app.use(helmet());
 
   // Cross-Origin Resource Sharing
@@ -17,12 +17,14 @@ module.exports = function (app) {
   app.use(cookieParser());
 
   // Session
-  app.use(session({
-    secret: SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    name: 'sid'
-  }));
+  app.use(
+    session({
+      secret: SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true,
+      name: "sid"
+    })
+  );
 
   // Body Parser
   app.use(bodyParser.urlencoded({ extended: true }));
