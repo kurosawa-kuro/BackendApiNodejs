@@ -1,9 +1,10 @@
 const router = require('express-promise-router')();
 const commonModule = require('../../lib/commonModule');
 const logger = require('../../lib/log/logger').application;
+const constants = require('../../config/constants');
 
 router.get('/', async function (req, res) {
-  const param = { 'result': 'async' };
+  const param = { 'result': constants.host };
 
   console.log('Oh time flies so fast...');
   await commonModule.sleep(5000);
