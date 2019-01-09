@@ -1,4 +1,4 @@
 module.exports = function (app) {
-    app.use("/users", require('../app/controllers/users'));
+    app.use("/sync", require('../app/controllers/sync'));
     app.use("/async", require('../app/controllers/async'));
 }

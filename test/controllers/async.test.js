@@ -3,7 +3,7 @@ const app = require('../../app');
 
 const commonModule = require('../../lib/commonModule');
 
-describe('Test the async path', () => {
+describe('非同期テスト', () => {
   beforeEach(() => {
     jest.setTimeout(30000);
   });
@@ -19,4 +19,4 @@ describe('Test the async path', () => {
 
     expect(response.statusCode).toBe(200);
   });
-})
+});
