@@ -2,7 +2,7 @@
 const config = require('config');
 
 module.exports = {
-  // Settings
+  // === Settings ====================================================
   // PORT
   PORT: config.get('PORT'),
 
@@ -23,6 +23,7 @@ module.exports = {
     PASSWORD_SALT: config.get('SECURITY.PASSWORD_SALT'),
     PASSWORD_STRETCH: config.get('SECURITY.PASSWORD_STRETCH')
   },
+  // === Settings ====================================================
 
   // Constants
   // Formatted Date
