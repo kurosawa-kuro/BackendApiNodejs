@@ -1,16 +1,17 @@
 // NPM
 const router = require('express').Router();
 
-var mysql = require('mysql'); //★追加
+// Constants
+const constants = require('../../config/constants');
 
 // ★以下を追加
 var knex = require('knex')({
   dialect: 'mysql',
   connection: {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'my-nodeapp-db',
+    host: constants.DB_MYSQL.HOST,
+    user: constants.DB_MYSQL.USER,
+    password: constants.DB_MYSQL.PASSWORD,
+    database: constants.DB_MYSQL.DB_NAME,
     charset: 'utf8'
   }
 });
@@ -20,21 +21,9 @@ var Bookshelf = require('bookshelf')(knex);
 var MyData = Bookshelf.Model.extend({
   tableName: 'mydata'
 });
-// ここまで
-
-var mysql_setting = {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'my-nodeapp-db'
-};
 
 // index
 router.get('/', (req, res) => {
-  // const param = { 'result': 'crud' };
-  // res.header('Content-Type', 'application/json; charset=utf-8');
-
-  // return res.send(param);
   new MyData().fetchAll().then((collection) => {
     var data = {
       title: 'Hello!',

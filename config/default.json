@@ -2,8 +2,10 @@
   "PORT": 3000,
   "DB_MYSQL": {
     "HOST": "localhost",
-    "PORT": 5984,
-    "DB_NAME": "customers"
+    "USER": "root",
+    "PASSWORD": "",
+    "PORT": 3306,
+    "DB_NAME": "my-nodeapp-db"
   },
   "DB_MONGO": {
     "HOST": "localhost",

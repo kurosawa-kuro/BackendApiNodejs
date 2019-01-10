@@ -9,6 +9,8 @@ module.exports = {
   // Data Base
   DB_MYSQL: {
     HOST: config.get('DB_MYSQL.HOST'),
+    USER: config.get('DB_MYSQL.USER'),
+    PASSWORD: config.get('DB_MYSQL.PASSWORD'),
     PORT: config.get('DB_MYSQL.PORT'),
     DB_NAME: config.get('DB_MYSQL.DB_NAME')
   },
