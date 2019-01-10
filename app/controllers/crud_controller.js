@@ -4,8 +4,8 @@ const router = require('express').Router();
 // Constants
 const constants = require('../../config/constants');
 
-// ★以下を追加
-var knex = require('knex')({
+// knex
+const knex = require('knex')({
   dialect: 'mysql',
   connection: {
     host: constants.DB_MYSQL.HOST,
@@ -16,9 +16,11 @@ var knex = require('knex')({
   }
 });
 
-var Bookshelf = require('bookshelf')(knex);
+// bookshelf
+const Bookshelf = require('bookshelf')(knex);
 
-var MyData = Bookshelf.Model.extend({
+// Model
+const MyData = Bookshelf.Model.extend({
   tableName: 'mydata'
 });
 
