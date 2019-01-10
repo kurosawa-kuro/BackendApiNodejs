@@ -5,14 +5,14 @@ const router = require('express-promise-router')();
 const constants = require('../../config/constants');
 
 // Library
-const commonModule = require('../../lib/commonModule');
+const { sleep } = require('../../lib/commonModule');
 const logger = require('../../lib/log/logger').application;
 
 router.get('/', async function (req, res) {
   const param = { 'result': constants.host };
 
   console.log('Oh time flies so fast...');
-  await commonModule.sleep(5000);
+  await sleep(5000);
   console.log('5 seconds passed.');
   logger.error('debug', param);
 

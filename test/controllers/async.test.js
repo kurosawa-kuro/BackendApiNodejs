@@ -2,7 +2,7 @@
 const request = require('supertest');
 
 // Library
-const commonModule = require('../../lib/commonModule');
+const { sleep } = require('../../lib/commonModule');
 
 const app = require('../../app');
 
@@ -16,7 +16,7 @@ describe('非同期テスト', () => {
 
     console.log('before await commonModule.sleep(6000)');
 
-    await commonModule.sleep(6000);
+    await sleep(6000);
 
     console.log('after await commonModule.sleep(6000)');
 
