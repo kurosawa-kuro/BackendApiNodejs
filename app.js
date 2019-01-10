@@ -4,9 +4,6 @@ const express = require('express');
 // Constants
 const { PORT } = require('./config/constants');
 
-// const cluster = require('cluster');
-// var numCPUs = require('os').cpus().length;
-
 // Library
 const { displayConstants } = require('./lib/commonModule');
 
