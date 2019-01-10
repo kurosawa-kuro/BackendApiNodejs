@@ -17,16 +17,16 @@ const knex = require('knex')({
 });
 
 // bookshelf
-const Bookshelf = require('bookshelf')(knex);
+const bookshelf = require('bookshelf')(knex);
 
 // Model
-const MyData = Bookshelf.Model.extend({
+const myData = bookshelf.Model.extend({
   tableName: 'mydata'
 });
 
-// index
+// Read
 router.get('/', (req, res) => {
-  new MyData().fetchAll().then((collection) => {
+  new myData().fetchAll().then((collection) => {
     var data = {
       title: 'Hello!',
       content: collection.toArray()
@@ -35,17 +35,22 @@ router.get('/', (req, res) => {
     res.header('Content-Type', 'application/json; charset=utf-8');
 
     return res.send(data);
-  })
-    .catch((err) => {
-      res.status(500).json({ error: true, data: { message: err.message } });
-    });
+  }).catch((err) => {
+    res.status(500).json({ error: true, data: { message: err.message } });
+  });
 });
 
-// router.post('/', (req, res) => {
-//   const param = { 'result': 'users' };
-//   res.header('Content-Type', 'application/json; charset=utf-8');
+// Create
+router.post('/add', (req, res) => {
+  new myData(req.body).save().then((model) => {
+    const data = model;
 
-//   return res.send(param);
-// });
+    res.header('Content-Type', 'application/json; charset=utf-8');
+
+    return res.send(data);
+  }).catch((err) => {
+    res.status(500).json({ error: true, data: { message: err.message } });
+  });
+});
 
 module.exports = router;
