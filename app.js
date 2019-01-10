@@ -1,9 +1,13 @@
 // NPM
 const express = require('express');
+
+// Constants
 const { PORT } = require('./config/constants');
+
 // const cluster = require('cluster');
 // var numCPUs = require('os').cpus().length;
 
+// Library
 const commonModule = require('./lib/commonModule');
 const requestBody = require('./lib/middleware/requestBody');
 

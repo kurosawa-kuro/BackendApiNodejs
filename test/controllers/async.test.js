@@ -1,7 +1,10 @@
+// NPM
 const request = require('supertest');
-const app = require('../../app');
 
+// Library
 const commonModule = require('../../lib/commonModule');
+
+const app = require('../../app');
 
 describe('非同期テスト', () => {
   beforeEach(() => {

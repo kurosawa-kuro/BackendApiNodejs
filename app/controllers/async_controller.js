@@ -1,7 +1,12 @@
+// NPM
 const router = require('express-promise-router')();
+
+// Constants
+const constants = require('../../config/constants');
+
+// Library
 const commonModule = require('../../lib/commonModule');
 const logger = require('../../lib/log/logger').application;
-const constants = require('../../config/constants');
 
 router.get('/', async function (req, res) {
   const param = { 'result': constants.host };

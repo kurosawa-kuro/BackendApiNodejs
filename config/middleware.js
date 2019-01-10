@@ -1,4 +1,5 @@
-module.exports = function(app) {
+module.exports = function (app) {
+  // NPM
   const bodyParser = require('body-parser');
   const cookieParser = require('cookie-parser');
   const session = require('express-session');
