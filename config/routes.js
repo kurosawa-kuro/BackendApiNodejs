@@ -11,6 +11,8 @@ module.exports = function (app) {
   // Routes
   app.use('/sync', require('../app/controllers/sync_controller'));
   app.use('/async', require('../app/controllers/async_controller'));
+  app.use('/crud', require('../app/controllers/crud_controller'));
+
 
   // express-list-endpoints
   commonModule.displayListEndpoints(app);
